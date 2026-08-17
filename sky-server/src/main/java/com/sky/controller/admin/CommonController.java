@@ -6,7 +6,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/admin/common")
 public class CommonController {
-    public
-
-
 }

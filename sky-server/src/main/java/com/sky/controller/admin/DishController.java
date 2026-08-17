@@ -1,37 +1,61 @@
 package com.sky.controller.admin;
 
+import com.sky.dto.DishDTO;
+import com.sky.entity.Dish;
 import com.sky.result.Result;
 import com.sky.service.DishService;
+import com.sky.vo.DishVO;
 import io.swagger.annotations.ApiOperation;
-import jdk.jpackage.internal.Log;
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/admin/dish")
+@Slf4j
 public class DishController {
+
+    @Autowired
+    private DishService dishService;
 
     @DeleteMapping
     @ApiOperation("菜品删除")
-    public Result delete(@RequestParam List<Long> ids){
-        Log.info("菜品删除:{}");
-        DishService.deleteBatch(ids);
+    public Result delete(@RequestParam List<Long> ids) {
+        log.info("菜品删除:{}", ids);
+        dishService.deleteBatch(ids);
         return Result.success();
-
     }
-
-//    新增的方法
-//根据id来查询响应的菜品
 
     @GetMapping("/{id}")
-    ApiOperation("根据id来查询菜品")
-    Public Result<DishVO> getById(@PathVariable Long id){
-        Log.info("根据id查询菜品",id);
-        DishVO dishVO =DishService.getByIdWithFlavor(id);
+    @ApiOperation("根据id来查询菜品")
+    public Result<DishVO> getById(@PathVariable Long id) {
+        log.info("根据id查询菜品:{}", id);
+        DishVO dishVO = dishService.getByIdWithFlavor(id);
         return Result.success(dishVO);
+    }
+
+//    修改菜品的代码
+
+    @PutMapping
+    @ApiOperation("修改菜品")
+    public Result update(@RequestBody DishDTO dishDTO){
+        log.info("修稿菜品:{}",dishDTO);
+        dishService.updateWithFlavor(dishDTO);
+        return Result.success();
+
+
 
     }
+
+     @GetMapping("/list")
+    public Result<List<Dish>> list(long categoryId){
+        List<Dish> list= dishService.list(categoryId);
+
+        return Result.success(list);
+
+     }
+
+
 }
