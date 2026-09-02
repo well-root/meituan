@@ -13,3 +13,7 @@ sky:
       password: 1115.ljd
       database: 10
 
+  wechat:
+    appid: xxx
+    secret: xxx
+

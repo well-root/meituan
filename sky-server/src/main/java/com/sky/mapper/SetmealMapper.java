@@ -53,4 +53,12 @@ public interface SetmealMapper {
     void deleteById(Long setmealid);
 
 
+    //动态查询套餐
+    List<Setmeal> list(Setmeal setmeal);
+    @Select("select sd.name, sd.copies, d.image, d.description " +
+            "from setmeal_dish sd left join dish d on sd.dish_id = d.id " +
+            "where sd.setmeal_id = #{setmealId}")
+    List<DishItemVO> getDishItemBySetmealId(Long setmealId);
+
+
 }
