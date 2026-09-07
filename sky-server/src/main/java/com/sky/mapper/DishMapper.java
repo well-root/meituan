@@ -19,6 +19,11 @@ public interface DishMapper {
     @Select("select count(id) from dish where category_id = #{categoryId}")
     Integer countByCategoryId(Long categoryId);
 
+    /**
+     * 新增菜品
+     * @param dish
+     */
+    void insert(Dish dish);
 
     /**
      * 根据主键查询菜品

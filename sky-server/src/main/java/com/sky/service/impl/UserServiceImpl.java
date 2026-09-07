@@ -50,7 +50,7 @@ public class UserServiceImpl {
                     .openid(openid)
                     .createTime(LocalDateTime.now())
                     .build();
-            userMapper.inser(user);
+            userMapper.insert(user);
 
 
         }

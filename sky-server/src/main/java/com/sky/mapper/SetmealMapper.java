@@ -30,17 +30,17 @@ public interface SetmealMapper {
 
     /**
      * 条件查询套餐
-     * @param setmeal
+     * @param
      * @return
      */
-    List<Setmeal> list(Setmeal setmeal);
-
-    /**
-     * 根据套餐id查询套餐中包含的菜品
-     * @param setmealId
-     * @return
-     */
-    List<DishItemVO> getDishItemBySetmealId(Long setmealId);
+//    List<Setmeal> list(Setmeal setmeal);
+//
+//    /**
+//     * 根据套餐id查询套餐中包含的菜品
+//     * @param setmealId
+//     * @return
+//     */
+//    List<DishItemVO> getDishItemBySetmealId(Long setmealId);
 //套餐的分页查询
     Page<SetmealVO> pageQuery(SetmealPageQueryDTO setmealPageQueryDTO);
 
@@ -55,10 +55,8 @@ public interface SetmealMapper {
 
     //动态查询套餐
     List<Setmeal> list(Setmeal setmeal);
-    @Select("select sd.name, sd.copies, d.image, d.description " +
-            "from setmeal_dish sd left join dish d on sd.dish_id = d.id " +
-            "where sd.setmeal_id = #{setmealId}")
     List<DishItemVO> getDishItemBySetmealId(Long setmealId);
 
 
+    void update(Setmeal setmeal);
 }
