@@ -24,5 +24,3 @@ public interface OrderService {
 
     void reminder(Long id);
 }
-
-

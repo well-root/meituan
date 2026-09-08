@@ -1,11 +1,13 @@
 package com.sky.mapper;
 
+import com.sky.dto.GoodsSalesDTO;
 import com.sky.entity.Orders;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface OrderMapper {
@@ -33,4 +35,13 @@ public interface OrderMapper {
     @Select("select * from orders where id =#{id}")
 
     Orders getById(Long id);
+//根据动态的条件查询营业额
+
+    Double sumByMap(Map map);
+//查询订单数量的方法
+
+    Integer countByMap(Map map);
+//查看商品销量的排名
+
+    List<GoodsSalesDTO> getSaleTop10(LocalDateTime beginTime, LocalDateTime endTime);
 }
