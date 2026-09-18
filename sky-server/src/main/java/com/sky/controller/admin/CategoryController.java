@@ -31,7 +31,7 @@ public class CategoryController {
      * @param categoryDTO
      * @return
      */
-    @PostMapping
+    @PostMapping("/category")
     @ApiOperation("新增分类")
     public Result<String> save(@RequestBody CategoryDTO categoryDTO){
         log.info("新增分类：{}", categoryDTO);
