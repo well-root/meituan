@@ -42,7 +42,7 @@ public class DishController {
     /**
      * 菜品批量删除
      */
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @ApiOperation("菜品批量删除")
     public Result delete(@RequestParam List<Long> ids) {
         log.info("菜品批量删除：{}", ids);
